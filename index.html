@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Label</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Navigation Tabs -->
+        <div class="nav-tabs">
+            <button class="nav-tab active">Home View</button>
+            <button class="nav-tab">Admin View</button>
+        </div>
+
+        <!-- Views Container -->
+        <div class="views-container">
+            <!-- Home View -->
+            <div class="view home-view active">
+                <!-- Header -->
+                <div class="header">
+                    <div class="header-content">
+                        <h1>Smart Label</h1>
+                        <button class="notification-btn">
+                            <span class="material-icons-outlined">notifications_none</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Search Bar -->
+                <div class="search-container">
+                    <div class="search-bar">
+                        <span class="material-icons-outlined">search</span>
+                        <input type="text" placeholder="Search products...">
+                    </div>
+                </div>
+
+                <!-- Scan Button -->
+                <div class="scan-button-container">
+                    <button class="scan-button" onclick="window.location.href='pages/scanner.html'">
+                        <span class="material-icons-outlined">qr_code_scanner</span>
+                        <span>Scan QR Code</span>
+                    </button>
+                </div>
+
+                <!-- Promotions -->
+                <div class="promotions-section">
+                    <h2>Current Promotions</h2>
+                    <div class="promotions-grid">
+                        <div class="promotion-card">
+                            <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=500&q=80" alt="Summer Sale" class="promotion-image">
+                            <div class="promotion-content">
+                                <span class="promotion-badge">New</span>
+                                <h3>Summer Sale</h3>
+                                <p>Get up to 50% off on selected items</p>
+                            </div>
+                        </div>
+                        <div class="promotion-card">
+                            <img src="https://images.unsplash.com/photo-1607082349566-187342175e2f?w=500&q=80" alt="Flash Deal" class="promotion-image">
+                            <div class="promotion-content">
+                                <span class="promotion-badge">Limited</span>
+                                <h3>Flash Deal</h3>
+                                <p>24 hours only - Don't miss out!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Categories -->
+                <div class="categories-section">
+                    <h2>Categories</h2>
+                    <div class="categories-grid">
+                        <a href="pages/beverages.html" class="category-card">
+                            <span class="category-emoji">🥤</span>
+                            <span>Beverages</span>
+                        </a>
+                        <a href="pages/bakery.html" class="category-card">
+                            <span class="category-emoji">🥖</span>
+                            <span>Bakery</span>
+                        </a>
+                        <a href="pages/dairy.html" class="category-card">
+                            <span class="category-emoji">🥛</span>
+                            <span>Dairy</span>
+                        </a>
+                        <a href="pages/fruits.html" class="category-card">
+                            <span class="category-emoji">🍎</span>
+                            <span>Fruits</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Admin View -->
+            <div class="view admin-view">
+                <div class="admin-header">
+                    <h2>Admin Dashboard</h2>
+                </div>
+                
+                <div class="admin-stats">
+                    <div class="stat-card">
+                        <span class="material-icons-outlined">inventory_2</span>
+                        <div class="stat-info">
+                            <h3>Total Products</h3>
+                            <p id="totalProducts">0</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <span class="material-icons-outlined">shopping_cart</span>
+                        <div class="stat-info">
+                            <h3>Total Orders</h3>
+                            <p id="totalOrders">0</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <span class="material-icons-outlined">warning</span>
+                        <div class="stat-info">
+                            <h3>Low Stock Items</h3>
+                            <p id="lowStockItems">0</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="admin-actions">
+                    <div class="action-card" onclick="showAdminSection('products')">
+                        <span class="material-icons-outlined">add_box</span>
+                        <h3>Manage Products</h3>
+                        <p>Add, edit, or remove products</p>
+                    </div>
+                    <div class="action-card" onclick="showAdminSection('inventory')">
+                        <span class="material-icons-outlined">inventory</span>
+                        <h3>Inventory</h3>
+                        <p>Update stock levels</p>
+                    </div>
+                    <div class="action-card" onclick="showAdminSection('orders')">
+                        <span class="material-icons-outlined">receipt_long</span>
+                        <h3>Orders</h3>
+                        <p>View and manage orders</p>
+                    </div>
+                    <div class="action-card" onclick="showAdminSection('categories')">
+                        <span class="material-icons-outlined">category</span>
+                        <h3>Categories</h3>
+                        <p>Manage product categories</p>
+                    </div>
+                </div>
+
+                <!-- Admin Sections -->
+                <div class="admin-sections">
+                    <!-- Products Section -->
+                    <div id="products-section" class="admin-section">
+                        <div class="section-header">
+                            <h3>Products Management</h3>
+                            <button class="add-button" onclick="showAddProductForm()">
+                                <span class="material-icons-outlined">add</span> Add Product
+                            </button>
+                        </div>
+                        <div class="products-table">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Product</th>
+                                        <th>Category</th>
+                                        <th>Price</th>
+                                        <th>Stock</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="productsTableBody">
+                                    <!-- Products will be loaded here -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Other sections will be hidden initially -->
+                    <div id="inventory-section" class="admin-section">
+                        <div class="section-header">
+                            <h3>Inventory Management</h3>
+                        </div>
+                        <div class="inventory-grid">
+                            <!-- Inventory items will be loaded here -->
+                        </div>
+                    </div>
+
+                    <div id="orders-section" class="admin-section">
+                        <div class="section-header">
+                            <h3>Order Management</h3>
+                        </div>
+                        <div class="orders-list">
+                            <!-- Orders will be loaded here -->
+                        </div>
+                    </div>
+
+                    <div id="categories-section" class="admin-section">
+                        <div class="section-header">
+                            <h3>Category Management</h3>
+                            <button class="add-button">
+                                <span class="material-icons-outlined">add</span> Add Category
+                            </button>
+                        </div>
+                        <div class="categories-grid admin-categories">
+                            <!-- Categories will be loaded here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/navigation.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+</html>

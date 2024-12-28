@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Scanner - Smart Label</title>
+    <link rel="stylesheet" href="../style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://unpkg.com/html5-qrcode"></script>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="header-title">
+                <button class="back-button" onclick="window.location.href='../'">
+                    <span class="material-icons">arrow_back</span>
+                </button>
+                <h1>QR Scanner</h1>
+            </div>
+        </header>
+
+        <main class="scanner-page">
+            <div class="scanner-container">
+                <div class="scanner-frame">
+                    <div class="scanner-overlay">
+                        <div class="scan-line"></div>
+                    </div>
+                    <div id="qr-reader"></div>
+                </div>
+                <div id="qr-reader-results" class="scanner-message">
+                    <span class="material-icons scanner-icon">qr_code_scanner</span>
+                    <p>Position the QR code within the frame</p>
+                    <div class="pulse-ring"></div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        function onScanSuccess(decodedText, decodedResult) {
+            const resultsDiv = document.getElementById('qr-reader-results');
+            resultsDiv.innerHTML = `
+                <div class="scan-result">
+                    <h3>QR Code Detected!</h3>
+                    <p>Content: ${decodedText}</p>
+                    <button onclick="scanAgain()" class="scanner-btn">
+                        <span class="material-icons">refresh</span>
+                        Scan Again
+                    </button>
+                </div>
+            `;
+
+            // Stop the scanner after successful scan
+            if (html5QrcodeScanner) {
+                html5QrcodeScanner.clear();
+            }
+        }
+
+        function onScanFailure(error) {
+            // Just ignore failures - they happen frequently while scanning
+            console.warn(`QR scan error: ${error}`);
+        }
+
+        function scanAgain() {
+            const resultsDiv = document.getElementById('qr-reader-results');
+            resultsDiv.innerHTML = '<span class="material-icons scanner-icon">qr_code_scanner</span><p>Position the QR code within the frame</p><div class="pulse-ring"></div>';
+            initializeScanner();
+        }
+
+        function initializeScanner() {
+            // Clear any existing scanner
+            if (html5QrcodeScanner) {
+                html5QrcodeScanner.clear();
+            }
+
+            // Create new scanner instance
+            html5QrcodeScanner = new Html5QrcodeScanner(
+                "qr-reader",
+                {
+                    fps: 10,
+                    qrbox: { width: 250, height: 250 },
+                    aspectRatio: 1.0,
+                    showTorchButtonIfSupported: true
+                }
+            );
+
+            // Render the scanner
+            html5QrcodeScanner.render(onScanSuccess, onScanFailure);
+        }
+
+        let html5QrcodeScanner = null;
+        
+        // Initialize scanner when page loads
+        document.addEventListener('DOMContentLoaded', initializeScanner);
+    </script>
+</body>
+</html>

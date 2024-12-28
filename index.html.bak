@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Label</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Navigation Tabs -->
+        <div class="nav-tabs">
+            <button class="nav-tab active">Home View</button>
+            <button class="nav-tab">Admin View</button>
+        </div>
+
+        <!-- Views Container -->
+        <div class="views-container">
+            <!-- Home View -->
+            <div class="view home-view active">
+                <!-- Header -->
+                <div class="header">
+                    <div class="header-content">
+                        <h1>Smart Label</h1>
+                        <button class="notification-btn">
+                            <span class="material-icons-outlined">notifications_none</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Search Bar -->
+                <div class="search-container">
+                    <div class="search-bar">
+                        <span class="material-icons-outlined">search</span>
+                        <input type="text" placeholder="Search products...">
+                    </div>
+                </div>
+
+                <!-- Scan Button -->
+                <div class="scan-button-container">
+                    <button class="scan-button" onclick="window.location.href='pages/scanner.html'">
+                        <span class="material-icons-outlined">qr_code_scanner</span>
+                        <span>Scan QR Code</span>
+                    </button>
+                </div>
+
+                <!-- Promotions -->
+                <div class="promotions-section">
+                    <h2>Current Promotions</h2>
+                    <div class="promotions-grid">
+                        <div class="promotion-card">
+                            <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=500&q=80" alt="Summer Sale" class="promotion-image">
+                            <div class="promotion-content">
+                                <span class="promotion-badge">New</span>
+                                <h3>Summer Sale</h3>
+                                <p>Get up to 50% off on selected items</p>
+                            </div>
+                        </div>
+                        <div class="promotion-card">
+                            <img src="https://images.unsplash.com/photo-1607082349566-187342175e2f?w=500&q=80" alt="Flash Deal" class="promotion-image">
+                            <div class="promotion-content">
+                                <span class="promotion-badge">Limited</span>
+                                <h3>Flash Deal</h3>
+                                <p>24 hours only - Don't miss out!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Categories -->
+                <div class="categories-section">
+                    <h2>Categories</h2>
+                    <div class="categories-grid">
+                        <a href="pages/beverages.html" class="category-card" onclick="window.location.href='pages/beverages.html'">
+                            <span class="category-emoji">🥤</span>
+                            <span>Beverages</span>
+                        </a>
+                        <a href="pages/bakery.html" class="category-card" onclick="window.location.href='pages/bakery.html'">
+                            <span class="category-emoji">🥖</span>
+                            <span>Bakery</span>
+                        </a>
+                        <a href="pages/dairy.html" class="category-card" onclick="window.location.href='pages/dairy.html'">
+                            <span class="category-emoji">🥛</span>
+                            <span>Dairy</span>
+                        </a>
+                        <a href="pages/fruits.html" class="category-card" onclick="window.location.href='pages/fruits.html'">
+                            <span class="category-emoji">🍎</span>
+                            <span>Fruits</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Admin View -->
+            <div class="view admin-view" id="adminView">
+                <div class="product-management">
+                    <h2>Product Management</h2>
+                    <div class="management-grid">
+                        <div class="management-item">
+                            <span class="material-icons">add_circle</span>
+                            <h3>Add Products</h3>
+                        </div>
+                        <div class="management-item">
+                            <span class="material-icons">edit</span>
+                            <h3>Edit Products</h3>
+                        </div>
+                        <div class="management-item">
+                            <span class="material-icons">inventory</span>
+                            <h3>Manage Stock</h3>
+                        </div>
+                        <div class="management-item">
+                            <span class="material-icons">analytics</span>
+                            <h3>View Analytics</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/navigation.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+</html>
